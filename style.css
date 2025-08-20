@@ -279,7 +279,12 @@ body {
   opacity: 0;
   font-size: 15px;
   line-height: 1.6;
+  word-wrap: break-word;      /* ✅ wrap long words */
+  overflow-wrap: anywhere;    /* ✅ wrap even without spaces */
 }
+
+
+
 .mission-vision-values .card h4 {
   margin: 0 0 8px;
   font: 700 16px/1 'Anticva', serif;
@@ -414,6 +419,13 @@ body {
   .bulb-icon {
     width: 80px;
     height: 80px;
+  }
+    .mission-vision-values .card {
+    position: relative;       /* ✅ stack naturally */
+    margin: 20px auto;
+    text-align: center;
+    opacity: 1;
+    max-width: 90%;           /* ✅ fit small screen */
   }
 }
 @media (max-width: 520px) {
