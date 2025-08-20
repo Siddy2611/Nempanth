@@ -439,7 +439,52 @@ body {
   /* Icons are already 80px from previous query */
   .grid-container { grid-template-columns: 1fr; gap: 15px; padding: 0 10px; }
   .service { min-height: 110px; font-size: clamp(13px, 4vw, 15px); }
+  .stack-container {
+    width: 95%;
+    height: auto;   /* ✅ allow full card height */
+    top: 10vh;
+  }
+  .stack-card {
+    min-height: auto;
+    height: auto;   /* ✅ card grows with content */
+    font-size: clamp(13px, 4vw, 16px);
+    padding: 20px;
+    word-wrap: break-word;
+    overflow-wrap: anywhere;  /* ✅ force wrapping */
+  }
+  .stack-card h1 {
+    font-size: clamp(20px, 6vw, 28px);
+    line-height: 1.4;
+  }
+
+    .mission-vision-values .stage {
+    aspect-ratio: auto;
+  }
+  .mission-vision-values .disc {
+    width: 90px;
+    height: 90px;
+    font-size: 0.7rem;
+  }
+  .mission-vision-values .card {
+    position: absolute;
+    font-size: 13px;
+    max-width: 200px;
+  }
+  /* ✅ Optional: shrink Venn rings so circles overlap nicely */
+  .mission-vision-values .rings circle {
+    r: 100 !important;
+  }
+   .tabs {
+    overflow-x: auto;       /* ✅ horizontal scroll */
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+  }
+  .tab {
+    flex: 0 0 auto;          /* ✅ don’t shrink */
+    min-width: 60px;
+  }
 }
+
 /* Small phones landscape: */
 @media (max-width: 768px) and (orientation: landscape) {
   .stack-container { width: 95%; height: 80vh; top: 5vh; }
