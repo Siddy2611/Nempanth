@@ -158,7 +158,7 @@ body {
   position: absolute;
   top: 0; left: 0;
   width: 100%;
-  min-height: 350px;
+  min-height: 300px;
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0,0,0,0.25);
   padding: 40px 30px;
@@ -461,6 +461,12 @@ body {
   .stack-card p {
     font-size: 14px;
   }
+  .content {
+  position: relative;
+  min-height: calc(200vh + 1200px);
+  transform: none !important;
+  padding-bottom: 100px;
+}
    .mission-vision-values .disc {
     width: 140px;
     height: 140px;
@@ -648,6 +654,25 @@ body {
   /* ✅ Keep bar centered */
   .take-what-you-need {
     justify-content: center;
+  }
+
+   .stack-container {
+    width: auto;
+    top: 10vh;
+  }
+  .stack-card {
+     height: auto;      /* adjusts to content */
+    min-height:22px;
+    padding: 15px;
+      display: block;      /* stop flexbox from stretching */
+
+  }
+  .stack-card h1 {
+    padding: 40px;
+    font-size: 40px;
+  }
+  .stack-card p {
+    font-size: 12px;
   }
 }
 
