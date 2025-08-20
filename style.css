@@ -199,6 +199,11 @@ body {
   margin-top: 30px;
   text-align: center;
 }
+.stack-card h1,
+.stack-card p {
+  overflow-wrap: break-word;
+  word-wrap: break-word; /* compatibility */
+}
 .stack-card h1 span {
   font-style: italic;
   opacity: 0.9;
@@ -254,6 +259,8 @@ body {
   text-transform: uppercase;
   box-shadow: 0 10px 18px rgba(0,0,0,.12);
   z-index: 2;
+    transform: translate(-50%, -50%);  /* ✅ keeps center aligned in circle */
+
 }
 .mission-vision-values .disc h3 {
   margin: 0; font-size: 1rem; font-weight: 700;
@@ -261,17 +268,14 @@ body {
 .mission-vision-values .disc.mission {
   background: #a30a26;
   left: 50%; top: 38%;
-  transform: translate(-50%,-50%);
 }
 .mission-vision-values .disc.values {
   background: #77001c;
   left: 40%; top: 73%;
-  transform: translate(-50%,-50%);
 }
 .mission-vision-values .disc.vision {
   background: #a30a26;
   left: 60%; top: 73%;
-  transform: translate(-50%,-50%);
 }
 .mission-vision-values .card {
   position: absolute;
@@ -310,6 +314,19 @@ body {
   align-items: center;
   padding: 60px 20px;
   box-sizing: border-box;
+}
+.take-what-you-need .poster h1 {
+  font-size: clamp(28px, 9vw, 70px);
+  line-height: 1.9;
+  text-align: center;
+}
+.take-what-you-need .tabs {
+  display: flex;
+  width: 100%;
+  border: 2px dashed #e63946;
+  border-top: none;
+  background: transparent;
+  overflow-x: visible;
 }
 .poster-container {
   display: flex;
@@ -404,7 +421,7 @@ body {
     font-size: .85rem;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .stack-container { width: 90%; height: 60vh; }
   .stack-card      { height: 30vh; font-size: 16px; }
   .face           { width: 70vw; height: 70vw; }
@@ -427,6 +444,37 @@ body {
     opacity: 1;
     max-width: 90%;           /* ✅ fit small screen */
   }
+   .stack-container {
+    width: 90%;
+    height: 60vh;
+  }
+  .stack-card {
+    font-size: 16px;
+    height: 30vh;
+    padding: 20px;
+  }
+  .stack-card h1 {
+    font-size: clamp(24px, 5vw, 36px);
+    line-height: 1.3;
+  }
+  .stack-card p {
+    font-size: 14px;
+  }
+   .mission-vision-values .disc {
+    width: 140px;
+    height: 140px;
+    font-size: .85rem;
+  }
+  .mission-vision-values .disc.mission { left: 50%; top: 46%; }
+  .mission-vision-values .disc.values  { left: 40%; top: 70%; }
+  .mission-vision-values .disc.vision  { left: 60%; top: 70%; }
+   .take-what-you-need .tabs {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* smooth iOS scroll */
+  }
+  .take-what-you-need .tab {
+    flex: 0 0 auto; /* don’t shrink, allow scroll */
+  }
 }
 @media (max-width: 520px) {
   body { padding: 0 8px; }
@@ -439,52 +487,12 @@ body {
   /* Icons are already 80px from previous query */
   .grid-container { grid-template-columns: 1fr; gap: 15px; padding: 0 10px; }
   .service { min-height: 110px; font-size: clamp(13px, 4vw, 15px); }
-  .stack-container {
-    width: 95%;
-    height: auto;   /* ✅ allow full card height */
-    top: 10vh;
-  }
-  .stack-card {
-    min-height: auto;
-    height: auto;   /* ✅ card grows with content */
-    font-size: clamp(13px, 4vw, 16px);
-    padding: 20px;
-    word-wrap: break-word;
-    overflow-wrap: anywhere;  /* ✅ force wrapping */
-  }
-  .stack-card h1 {
-    font-size: clamp(20px, 6vw, 28px);
-    line-height: 1.4;
-  }
-
-    .mission-vision-values .stage {
-    aspect-ratio: auto;
-  }
-  .mission-vision-values .disc {
-    width: 90px;
-    height: 90px;
-    font-size: 0.7rem;
-  }
-  .mission-vision-values .card {
-    position: absolute;
-    font-size: 13px;
-    max-width: 200px;
-  }
-  /* ✅ Optional: shrink Venn rings so circles overlap nicely */
-  .mission-vision-values .rings circle {
-    r: 100 !important;
-  }
-   .tabs {
-    overflow-x: auto;       /* ✅ horizontal scroll */
-    -webkit-overflow-scrolling: touch;
-    white-space: nowrap;
-  }
-  .tab {
-    flex: 0 0 auto;          /* ✅ don’t shrink */
-    min-width: 60px;
+   .mission-vision-values .disc {
+    width: 100px;
+    height: 100px;
+    font-size: .75rem;
   }
 }
-
 /* Small phones landscape: */
 @media (max-width: 768px) and (orientation: landscape) {
   .stack-container { width: 95%; height: 80vh; top: 5vh; }
@@ -503,8 +511,11 @@ body {
 /* Hide mission rings and stack discs on very small */
 @media (max-width: 700px) {
   .mission-vision-values .stage { aspect-ratio: auto; }
-  .mission-vision-values .disc { width:100px; height:100px; font-size:.75rem; position:static; margin:10px auto; }
+  .mission-vision-values .disc { width:100px; height:100px; font-size:.75rem;  margin:10px auto; }
   .mission-vision-values .card { position:static; margin:20px auto; text-align:center; opacity:1; max-width:90%; }
+    .mission-vision-values .disc.mission { left: 50%; top: 46%; }
+  .mission-vision-values .disc.values  { left: 40%; top: 98%; }
+  .mission-vision-values .disc.vision  { left: 60%; top: 98%; }
 }
 @media (max-width: 340px) {
   .poster-container {
@@ -528,6 +539,39 @@ body {
   }
 }
 /* Mobile-tweak for Tabs: allow horizontal scroll if needed */
+@media (max-width: 480px) {
+  .tabs {
+    overflow-x: auto;
+  }
+  .tab {
+    /* Let tabs size to content so they can scroll internally */
+    flex: 0 0 auto;
+    min-width: auto;
+  }
+    .stack-container {
+    width: 95%;
+    top: 10vh;
+  }
+  .stack-card {
+    height: 180px;
+    padding: 15px;
+  }
+  .stack-card h1 {
+    font-size: 22px;
+  }
+  .stack-card p {
+    font-size: 12px;
+  }
+   .mission-vision-values .disc {
+    width: 85px;
+    height: 80px;
+    font-size: .85rem;
+  }
+  .mission-vision-values .disc.mission { left: 50%; top: 46%; }
+  .mission-vision-values .disc.values  { left: 40%; top: 70%; }
+  .mission-vision-values .disc.vision  { left: 60%; top: 50%; }
+}
+
 @media (max-width: 420px) {
   .tabs {
     overflow-x: auto;

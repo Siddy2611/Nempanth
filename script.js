@@ -231,13 +231,6 @@ document.querySelectorAll(".take-what-you-need .tab").forEach(tab => {
 });
 
 
-// In script.js at the bottom
-window.addEventListener("pageshow", () => {
-  document.querySelectorAll(".take-what-you-need .tab").forEach(tab => {
-    tab.style.opacity = "1";
-    tab.style.transform = "rotate(180deg)";
-  });
-});
 
 // start
 setTimeout(showFace, 1800);
