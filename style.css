@@ -633,7 +633,22 @@ body {
   .mission-vision-values .card.mission { left: 0; top: 25%; text-align: left; }
   .mission-vision-values .card.vision  { right: 0; top: 75%; text-align: right; }
   .mission-vision-values .card.values  { left: 5%; top: 85%; text-align: left; }
-
+  .take-what-you-need .tabs {
+    display: inline-flex;
+    width: auto;
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* smooth on iOS */
+    
+    
+  }
+.poster-container {
+  width: 63%;
+}
+  /* ✅ Keep bar centered */
+  .take-what-you-need {
+    justify-content: center;
+  }
 }
 
 
