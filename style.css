@@ -193,7 +193,7 @@ body {
   margin-top: 6px;
 }
 .stack-card h1 {
-  font-size: 49px;
+  font-size: 55px;
   font-weight: normal;
   line-height: 1.3;
   margin-top: 30px;
@@ -202,7 +202,7 @@ body {
 .stack-card h1,
 .stack-card p {
   overflow-wrap: break-word;
-  word-wrap: break-word; /* compatibility */
+  word-wrap: break-word; 
 }
 .stack-card h1 span {
   font-style: italic;
@@ -262,8 +262,9 @@ body {
     transform: translate(-50%, -50%);  /* ✅ keeps center aligned in circle */
 
 }
+
 .mission-vision-values .disc h3 {
-  margin: 0; font-size: 1rem; font-weight: 700;
+  margin: 0; font-size: 1.3rem; font-weight: 700;
 }
 .mission-vision-values .disc.mission {
   background: #a30a26;
@@ -510,13 +511,41 @@ body {
 }
 /* Hide mission rings and stack discs on very small */
 @media (max-width: 700px) {
-  .mission-vision-values .stage { aspect-ratio: auto; }
-  .mission-vision-values .disc { width:100px; height:100px; font-size:.75rem;  margin:10px auto; }
-  .mission-vision-values .card { position:static; margin:20px auto; text-align:center; opacity:1; max-width:90%; }
-    .mission-vision-values .disc.mission { left: 50%; top: 46%; }
-  .mission-vision-values .disc.values  { left: 40%; top: 98%; }
-  .mission-vision-values .disc.vision  { left: 60%; top: 98%; }
+  .mission-vision-values .stage {
+    position: relative;
+    aspect-ratio: auto;
+    min-height: 500px; /* give space for discs + cards */
+  }
+
+  /* ✅ Keep discs inside scribbled rings */
+  .mission-vision-values .disc {
+    width: 100px;
+    height: 100px;
+    font-size: .75rem;
+    position: absolute;
+    transform: translate(-50%, -50%);
+  }
+  .mission-vision-values .disc.mission { left: 50%; top: 28%; }
+  .mission-vision-values .disc.values  { left: 40%; top: 73%; }
+  .mission-vision-values .disc.vision  { left: 60%; top: 73%; }
+
+  /* ✅ Put texts below, so they don’t overlap */
+  .mission-vision-values .card {
+    position: relative;
+    margin: 20px auto;
+    text-align: center;
+    max-width: 90%;
+    opacity: 1;
+    z-index: 10; /* above SVG if needed */
+  }
+
+  /* Example: place them below their circles */
+  .mission-vision-values .card.mission { margin-top: 140px; text-align: left; }
+  .mission-vision-values .card.vision  { margin-top: 40px; text-align: right; }
+  .mission-vision-values .card.values  { margin-top: 40px; text-align: left; }
 }
+
+
 @media (max-width: 340px) {
   .poster-container {
     width: min(94%, 340px);
@@ -581,4 +610,98 @@ body {
     flex: 0 0 auto;
     min-width: auto;
   }
+}
+
+@media (max-width: 480px) and (min-width: 450px) {
+  /* styles for ~450px – 480px */
+   .mission-vision-values .disc {
+    width: 85px;
+    height: 80px;
+    font-size: .85rem;
+  }
+  .mission-vision-values .disc.mission { left: 50%; top: 19%; }
+  .mission-vision-values .disc.values  { left: 40%; top: 38%; }
+  .mission-vision-values .disc.vision  { left: 61%; top: 38%; }
+  .mission-vision-values .card {
+    position: absolute;
+    width: 45%;
+    max-width: 240px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .mission-vision-values .card.mission { left: 0; top: 25%; text-align: left; }
+  .mission-vision-values .card.vision  { right: 0; top: 75%; text-align: right; }
+  .mission-vision-values .card.values  { left: 5%; top: 85%; text-align: left; }
+
+}
+
+
+@media (max-width: 495px) and (min-width: 480px) {
+  /* styles for ~450px – 480px */
+   .mission-vision-values .disc {
+    width: 85px;
+    height: 80px;
+    font-size: .85rem;
+  }
+  .mission-vision-values .disc.mission { left: 50%; top: 19%; }
+  .mission-vision-values .disc.values  { left: 40%; top: 38%; }
+  .mission-vision-values .disc.vision  { left: 61%; top: 38%; }
+  .mission-vision-values .card {
+    position: absolute;
+    width: 45%;
+    max-width: 240px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .mission-vision-values .card.mission { left: 0; top: 25%; text-align: left; }
+  .mission-vision-values .card.vision  { right: 0; top: 75%; text-align: right; }
+  .mission-vision-values .card.values  { left: 5%; top: 85%; text-align: left; }
+}
+
+@media (max-width: 520px) and (min-width: 495px) {
+  /* styles for ~450px – 480px */
+   .mission-vision-values .disc {
+    width: 85px;
+    height: 80px;
+    font-size: .85rem;
+  }
+  .mission-vision-values .disc.mission { left: 50%; top: 21%; }
+  .mission-vision-values .disc.values  { left: 40%; top: 40%; }
+  .mission-vision-values .disc.vision  { left: 61%; top: 40%; }
+  .mission-vision-values .card {
+    position: absolute;
+    width: 45%;
+    max-width: 240px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .mission-vision-values .card.mission { left: 0; top: 29%; text-align: left; }
+  .mission-vision-values .card.vision  { right: 0; top: 75%; text-align: right; }
+  .mission-vision-values .card.values  { left: 5%; top: 85%; text-align: left; }
+}
+
+@media (max-width: 560px) and (min-width: 520px) {
+  /* styles for ~450px – 480px */
+   .mission-vision-values .disc {
+    width: 85px;
+    height: 80px;
+    font-size: .85rem;
+  }
+  .mission-vision-values .disc.mission { left: 50%; top: 23%; }
+  .mission-vision-values .disc.values  { left: 40%; top: 45%; }
+  .mission-vision-values .disc.vision  { left: 61%; top: 45%; }
+  .mission-vision-values .card {
+    position: absolute;
+    width: 45%;
+    max-width: 240px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .mission-vision-values .card.mission { left: 0; top: 37%; text-align: left; }
+  .mission-vision-values .card.vision  { right: 0; top: 85%; text-align: right; }
+  .mission-vision-values .card.values  { left: 5%; top: 85%; text-align: left; }
 }
