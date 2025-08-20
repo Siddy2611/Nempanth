@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // ==== ELEMENTS ====
 const stackCards = document.querySelectorAll('.stack-card');
 const contentSection = document.querySelector('.content');
