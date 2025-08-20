@@ -645,10 +645,9 @@ body {
     max-width: 100%;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch; /* smooth on iOS */
-    
-    
   }
 .poster-container {
+  padding-top: 25%;
   width: 63%;
 }
   /* ✅ Keep bar centered */
@@ -674,6 +673,13 @@ body {
   .stack-card p {
     font-size: 12px;
   }
+
+  .icon-left { left: 2%; top: 6%; }
+.icon-right { right: -3%; top: 11%; }
+.bulb-icon{bottom: 8%; right: 1%; width: 30%;height: 20%;}
+.down-arrow{bottom: 8%; left: 1%;width: 30%;height: 25%;}
+#camera-icon{width: 26%;height: 18%;}
+#mic-icon{width: 26%;height: 18%;}
 }
 
 
