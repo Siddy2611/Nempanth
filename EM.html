@@ -1,0 +1,115 @@
+<section class="intro-section">
+  <div class="typewriter" id="tw"></div>
+
+  <div class="services" id="services">
+    <div>Care and Support</div>
+    <div>Children's Rights</div>
+    <div>Culture and Arts</div>
+    <div>Education</div>
+    <div>Health and Wellness</div>
+    <div>Legal Aid</div>
+    <div>Community Development</div>
+    <div>Environmental Protection</div>
+  </div>
+</section>
+
+<style>
+
+body{margin: 0;}
+  @font-face {
+    font-family: 'Anticva';
+    src: url('Anticva-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  .intro-section {
+    background: #F5F5DC;
+    background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  overflow-x: hidden; 
+    min-height: 86vh;
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+    justify-content: flex-start;
+    padding-top: 100px;
+    color: #4A0211;
+    font-family: 'Anticva', serif;
+  }
+
+  .typewriter {
+    font-size: 135px;
+    line-height: 1.1;
+    text-align: center;
+  }
+
+  .caret {
+    display: inline-block;
+    width: 3px;
+    background: #000000;
+    margin-left: 3px;
+    animation: blink .8s steps(1, end) infinite;
+    vertical-align: bottom;
+    height: 0.85em;
+  }
+
+  @keyframes blink {
+    50% { background: transparent; }
+  }
+
+  .services {
+    margin-top: 200px; /* closer to typewriter */
+    font-size: 40px;
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 30px 60px;
+  }
+
+  .services.show {
+    opacity: 1;
+    visibility: visible;
+  }
+</style>
+
+<script>
+  const lines = ["EVENT", "MARKETING"]; 
+  const typeDelay = 80;
+  const startDelay = 400;
+
+  const container = document.getElementById('tw');
+  const services = document.getElementById('services');
+  let line = 0, i = 0;
+
+  function typeNext() {
+    if (line < lines.length) {
+      if (i <= lines[line].length) {
+        let html = "";
+        for (let l = 0; l < line; l++) {
+          html += `<div><strong>${lines[l]}</strong></div>`;
+        }
+        html += `<div><strong>${lines[line].slice(0, i)}</strong><span class="caret"></span></div>`;
+        container.innerHTML = html;
+
+        i++;
+        setTimeout(typeNext, typeDelay);
+      } else {
+        line++;
+        i = 0;
+        setTimeout(typeNext, typeDelay * 3);
+      }
+    } else {
+      services.classList.add("show");
+    }
+  }
+
+  setTimeout(typeNext, startDelay);
+</script>
+
