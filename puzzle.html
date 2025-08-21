@@ -1,0 +1,139 @@
+<section id="puzzle-section">
+  <style>
+    #puzzle-section {
+      margin: 0;
+      padding: 60px 20px;
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      min-height: 80vh;
+    }
+
+    #puzzle-section .puzzle-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 40px;
+      position: relative;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    #puzzle-section .puzzle-container.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #puzzle-section .puzzle-container img {
+      width: 300px;
+      max-width: 40vw;
+    }
+
+    #puzzle-section .puzzle1 {
+      position: relative;
+      z-index: 2;
+    }
+
+    #puzzle-section .puzzle2 {
+      position: relative;
+      margin-left: -202px; /* overlap to connect */
+      z-index: 1;
+    }
+
+    /* NEW FLEX LAYOUT FOR TEXTS */
+    #puzzle-section .text-section {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      width: 90%;
+      max-width: 1000px;
+      padding: 20px;
+      box-sizing: border-box;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease-out;
+    }
+
+    #puzzle-section .text-section.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    #puzzle-section .mission,
+    #puzzle-section .vision {
+      flex: 1;
+    }
+
+    #puzzle-section .mission {
+      text-align: left;
+    }
+
+    #puzzle-section .vision {
+      text-align: right;
+    }
+
+    #puzzle-section .text-section h2 {
+      color: #77001c;
+      text-align: center;
+    }
+
+    #puzzle-section .text-section p {
+      color: #333;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* RESPONSIVE STACK ON SMALL SCREENS */
+    @media (max-width: 768px) {
+      #puzzle-section .text-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      #puzzle-section .mission,
+      #puzzle-section .vision {
+        text-align: center;
+      }
+    }
+  </style>
+
+  <div class="puzzle-container">
+    <img src="assets/puzzle1.png" alt="Puzzle 1" class="puzzle1">
+    <img src="assets/puzzle2.png" alt="Puzzle 2" class="puzzle2">
+  </div>
+
+  <div class="text-section">
+    <div class="mission">
+      <h2>Our Mission</h2>
+      <p>
+        Our mission is to create meaningful solutions that bring value and innovation to society. 
+        We aim to connect ideas and people like puzzle pieces forming a bigger picture.
+      </p>
+    </div>
+    
+    <div class="vision">
+      <h2>Our Vision</h2>
+      <p>
+        Our vision is to build a sustainable and connected future where collaboration 
+        and creativity drive progress for generations to come.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Intersection Observer for animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll("#puzzle-section .puzzle-container, #puzzle-section .text-section")
+      .forEach(el => observer.observe(el));
+  </script>
+</section>

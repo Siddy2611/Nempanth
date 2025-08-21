@@ -176,7 +176,7 @@ document.querySelectorAll(".mission-vision-values .card").forEach(card=>{
       if(entry.isIntersecting && !entry.target.dataset.done){
         const title=entry.target.dataset.title;
         const text=entry.target.dataset.text;
-        entry.target.innerHTML=`<h4 style="font-size:24px;">${title}</h4><p></p>`;
+        entry.target.innerHTML=`<h4 style="font-size:24px;">${title}</h4><p style="font-size:18px; line-height:1.2;"></p>`;
         entry.target.style.opacity=1;
         typeWriter(entry.target,text,30);
         entry.target.dataset.done="true";
