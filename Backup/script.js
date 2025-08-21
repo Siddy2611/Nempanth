@@ -18,13 +18,25 @@ const cameraIcon = document.getElementById('camera-icon');
 const cameraSound = document.getElementById('camera-sound');
 
 if (cameraIcon && cameraSound) {
+    const originalSrc = 'assets/camera.png';
+
     cameraIcon.addEventListener('mouseenter', () => {
-        // just play the sound
+        if (cameraIcon.classList.contains('busy')) return;
+
+        const gifSrc = 'assets/camera.gif?t=' + Date.now(); // cache-buster
+        cameraIcon.classList.add('busy');
+        cameraIcon.src = gifSrc;
+
+        // play sound after a short delay
         cameraSound.currentTime = 0;
         cameraSound.play().catch(() => {});
     });
-}
 
+    cameraIcon.addEventListener('mouseleave', () => {
+        cameraIcon.src = originalSrc;
+        cameraIcon.classList.remove('busy');
+    });
+}
 
 
 // ==== Microphone feature ====

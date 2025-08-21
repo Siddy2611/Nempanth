@@ -1,115 +1,214 @@
-<section class="intro-section">
-  <div class="typewriter" id="tw"></div>
-
-  <div class="services" id="services">
-    <div>Care and Support</div>
-    <div>Children's Rights</div>
-    <div>Culture and Arts</div>
-    <div>Education</div>
-    <div>Health and Wellness</div>
-    <div>Legal Aid</div>
-    <div>Community Development</div>
-    <div>Environmental Protection</div>
-  </div>
-</section>
-
-<style>
-
-body{margin: 0;}
-  @font-face {
-    font-family: 'Anticva';
-    src: url('Anticva-Regular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  .intro-section {
-    background: #F5F5DC;
-    background-image:
-    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  overflow-x: hidden; 
-    min-height: 86vh;
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    justify-content: flex-start;
-    padding-top: 100px;
-    color: #4A0211;
-    font-family: 'Anticva', serif;
-  }
-
-  .typewriter {
-    font-size: 135px;
-    line-height: 1.1;
-    text-align: center;
-  }
-
-  .caret {
-    display: inline-block;
-    width: 3px;
-    background: #000000;
-    margin-left: 3px;
-    animation: blink .8s steps(1, end) infinite;
-    vertical-align: bottom;
-    height: 0.85em;
-  }
-
-  @keyframes blink {
-    50% { background: transparent; }
-  }
-
-  .services {
-    margin-top: 200px; /* closer to typewriter */
-    font-size: 40px;
-    text-align: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1s ease;
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    gap: 30px 60px;
-  }
-
-  .services.show {
-    opacity: 1;
-    visibility: visible;
-  }
-</style>
-
-<script>
-  const lines = ["WEBSITE", "DESIGNING"]; 
-  const typeDelay = 80;
-  const startDelay = 400;
-
-  const container = document.getElementById('tw');
-  const services = document.getElementById('services');
-  let line = 0, i = 0;
-
-  function typeNext() {
-    if (line < lines.length) {
-      if (i <= lines[line].length) {
-        let html = "";
-        for (let l = 0; l < line; l++) {
-          html += `<div><strong>${lines[l]}</strong></div>`;
-        }
-        html += `<div><strong>${lines[line].slice(0, i)}</strong><span class="caret"></span></div>`;
-        container.innerHTML = html;
-
-        i++;
-        setTimeout(typeNext, typeDelay);
-      } else {
-        line++;
-        i = 0;
-        setTimeout(typeNext, typeDelay * 3);
-      }
-    } else {
-      services.classList.add("show");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>WEBSITE DESIGNING</title>
+  <style>
+    :root {
+      --bg: #F5F5DC;
+      --ink: #4A0211;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
+      --card-border: rgba(0,0,0,0.10);
     }
-  }
 
-  setTimeout(typeNext, startDelay);
-</script>
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      background-image:
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      font-family: 'Anticva', serif;
+      overflow-x: hidden;
+    }
 
+    /* Intro */
+    .intro-section {
+      min-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 100px;
+    }
+    .typewriter {
+      font-size: clamp(40px, 12vw, 135px);
+      line-height: 1.1;
+      text-align: center;
+      padding-inline: 16px;
+    }
+    .caret {
+      display: inline-block;
+      width: 3px;
+      background: #000;
+      margin-left: 3px;
+      animation: blink .8s steps(1, end) infinite;
+      vertical-align: bottom;
+      height: 0.85em;
+    }
+    @keyframes blink { 50% { background: transparent; } }
+
+    /* Cards wrapper */
+    .cards-section {
+      position: relative;
+      min-height: 180vh; /* enough scroll space */
+    }
+
+    /* Card base */
+    .card {
+      position: sticky;
+      top: 120px;
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--ink);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: clamp(20px, 3vw, 36px);
+      color: #f2f2f2;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+        display: flex;
+    flex-direction: column;   /* keeps heading + text vertical */
+    justify-content: center;  /* centers vertically */
+    align-items: center;      /* centers horizontally */
+    text-align: center; 
+    }
+
+    /* card one is always visible */
+    .card-one {
+      min-height: 300px;
+      z-index: 10;
+      opacity: 1;
+      transform: translateY(0) scale(1);
+      text-align: center;
+    }
+
+    /* card two slides from below */
+    .card-two {
+      opacity: 0;
+      transform: translateY(120px) scale(0.97);
+      z-index: 20;
+      margin-top:300px ;
+    }
+    .card-two.show {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .card-one p {
+      font-size: clamp(16px, 2.2vw, 22px);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .card-title {
+      margin: 0 0 20px 0;
+      font-size: clamp(18px, 2.4vw, 26px);
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .chip {
+      appearance: none;
+      border: 1px solid #fff;
+      background: transparent;
+      color: #f2f2f2;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font: inherit;
+      cursor: pointer;
+      transition: transform .15s ease, background .2s ease, color .2s ease;
+    }
+    .chip:hover {
+      transform: translateY(-2px);
+      background: var(--ink);
+      color: var(--bg);
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro -->
+  <section class="intro-section">
+    <div class="typewriter" id="tw"></div>
+  </section>
+
+  <!-- Cards Section -->
+  <section class="cards-section stack-container">
+    <!-- Card one -->
+    <article class="card card-one">
+      <p>
+We create websites that are not only aesthetically pleasing but also functional and effective. We make sure your website speaks the same language as your brand since it frequently serves as the initial impression.      </p>
+    </article>
+
+    <!-- Card two (slides up on scroll) -->
+    <article class="card card-two" id="cardTwo">
+      <h3 class="card-title">What we deliver</h3>
+      <div class="chips" id="serviceChips"></div>
+    </article>
+  </section>
+
+  <script>
+    /* ---------- Typewriter ---------- */
+    const lines = ["WEBSITE", "DESIGNING"];
+    const typeDelay = 80;
+    const startDelay = 400;
+    const container = document.getElementById('tw');
+    let line = 0, i = 0;
+
+    function typeNext() {
+      if (line < lines.length) {
+        if (i <= lines[line].length) {
+          let html = "";
+          for (let l = 0; l < line; l++) {
+            html += `<div><strong>${lines[l]}</strong></div>`;
+          }
+          html += `<div><strong>${lines[line].slice(0, i)}</strong><span class="caret"></span></div>`;
+          container.innerHTML = html;
+          i++;
+          setTimeout(typeNext, typeDelay);
+        } else {
+          line++;
+          i = 0;
+          setTimeout(typeNext, typeDelay * 3);
+        }
+      } else {
+        container.innerHTML = lines.map(w => `<div><strong>${w}</strong></div>`).join("");
+      }
+    }
+    setTimeout(typeNext, startDelay);
+
+    /* ---------- Deliverables ---------- */
+    const chipsWrap = document.getElementById('serviceChips');
+    const servicesList = [
+      "UI/UX DESIGN","CUSTOM WEBSITE DESIGNING","RESPONSIVE DESIGN","E-COMMERCE WEBSITE",
+      "LANDING PAGES","CONTENT & VISUAL INTEGRATION",
+      "SEO-FRIENDLY STRUCTURE"
+    ];
+    servicesList.forEach(label => {
+      const b = document.createElement('button');
+      b.className = 'chip';
+      b.type = 'button';
+      b.textContent = label;
+      chipsWrap.appendChild(b);
+    });
+
+    /* ---------- Scroll trigger for card-two ---------- */
+    const cardTwo = document.getElementById('cardTwo');
+    const triggerPoint = cardTwo.offsetTop - window.innerHeight / 2;
+
+    function onScroll() {
+      if (window.scrollY > triggerPoint) {
+        cardTwo.classList.add('show'); // slide up
+      } else {
+        cardTwo.classList.remove('show'); // reset if scroll back up
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+  </script>
+</body>
+</html>

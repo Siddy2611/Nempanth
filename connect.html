@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Connect Us</title>
+  <style>
+    body {
+      font-family: 'Anticva', serif;
+      background: #F5F5DC;
+      background-image:
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      max-width: 500px;
+      width: 100%;
+      background: #77001c;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+      text-align: center;
+      color: #fff;
+    }
+    h2 { margin-bottom: 20px; color: #fff; }
+    label {
+      display: block;
+      text-align: left;
+      margin: 10px 0 5px;
+      font-weight: 600;
+      color: #fff;
+    }
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 15px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      background: #fff;
+      color: #000;
+    }
+    .checkbox-group {
+      text-align: left;
+      margin-bottom: 20px;
+      display: grid;
+      grid-template-columns: 1fr 1fr; /* two columns for neat layout */
+      gap: 8px 15px;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+      font-weight: normal;
+      color: #fff;
+      gap: 8px;
+    }
+    .checkbox-group input {
+      transform: scale(1.2);
+      accent-color: #fff; /* keeps checkbox visible on dark bg */
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #fff;
+      border: none;
+      border-radius: 6px;
+      color: #77001c;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s, color 0.3s;
+    }
+    button:hover {
+      background: #a30a26;
+      color: #fff;
+      transform: scale(1.03);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>Connect With Us</h2>
+
+    <!-- Replace with your Formspree endpoint -->
+    <form action="https://formspree.io/f/mrblwvzz" method="POST" onsubmit="redirectHome(event)">
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <label for="email">Email</label>
+      <input type="email" id="email" name="_replyto" placeholder="Enter your email" required>
+
+      <label>What Services Do You Need?</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="services[]" value="Brand Identity"> Brand Identity</label>
+        <label><input type="checkbox" name="services[]" value="Brand Consultancy"> Brand Consultancy</label>
+        <label><input type="checkbox" name="services[]" value="Performance Marketing"> Performance Marketing</label>
+        <label><input type="checkbox" name="services[]" value="Digital Marketing"> Digital Marketing</label>
+        <label><input type="checkbox" name="services[]" value="Graphic Designing"> Graphic Designing</label>
+        <label><input type="checkbox" name="services[]" value="Photography"> Photography</label>
+        <label><input type="checkbox" name="services[]" value="Website Designing"> Website Designing</label>
+        <label><input type="checkbox" name="services[]" value="Animation"> Animation</label>
+      </div>
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+
+  <script>
+    function redirectHome(e) {
+      e.preventDefault(); // stop normal formspree redirect
+      const form = e.target;
+      fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      }).then(() => {
+        window.location.href = "index.html"; // redirect to homepage
+      }).catch(() => {
+        alert("❌ Something went wrong, please try again.");
+      });
+    }
+  </script>
+
+</body>
+</html>

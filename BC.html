@@ -1,115 +1,180 @@
-<section class="intro-section">
-  <div class="typewriter" id="tw"></div>
-
-  <div class="services" id="services">
-    <div>Care and Support</div>
-    <div>Children's Rights</div>
-    <div>Culture and Arts</div>
-    <div>Education</div>
-    <div>Health and Wellness</div>
-    <div>Legal Aid</div>
-    <div>Community Development</div>
-    <div>Environmental Protection</div>
-  </div>
-</section>
-
-<style>
-
-body{margin: 0;}
-  @font-face {
-    font-family: 'Anticva';
-    src: url('Anticva-Regular.otf') format('opentype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  .intro-section {
-    background: #F5F5DC;
-    background-image:
-    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  overflow-x: hidden; 
-    min-height: 86vh;
-    display: flex;
-    flex-direction: column;
-    align-items:center;
-    justify-content: flex-start;
-    padding-top: 100px;
-    color: #4A0211;
-    font-family: 'Anticva', serif;
-  }
-
-  .typewriter {
-    font-size: 135px;
-    line-height: 1.1;
-    text-align: center;
-  }
-
-  .caret {
-    display: inline-block;
-    width: 3px;
-    background: #000000;
-    margin-left: 3px;
-    animation: blink .8s steps(1, end) infinite;
-    vertical-align: bottom;
-    height: 0.85em;
-  }
-
-  @keyframes blink {
-    50% { background: transparent; }
-  }
-
-  .services {
-    margin-top: 200px; /* closer to typewriter */
-    font-size: 40px;
-    text-align: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 1s ease;
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    gap: 30px 60px;
-  }
-
-  .services.show {
-    opacity: 1;
-    visibility: visible;
-  }
-</style>
-
-<script>
-  const lines = ["BRAND", "CONSULTANCY"]; 
-  const typeDelay = 80;
-  const startDelay = 400;
-
-  const container = document.getElementById('tw');
-  const services = document.getElementById('services');
-  let line = 0, i = 0;
-
-  function typeNext() {
-    if (line < lines.length) {
-      if (i <= lines[line].length) {
-        let html = "";
-        for (let l = 0; l < line; l++) {
-          html += `<div><strong>${lines[l]}</strong></div>`;
-        }
-        html += `<div><strong>${lines[line].slice(0, i)}</strong><span class="caret"></span></div>`;
-        container.innerHTML = html;
-
-        i++;
-        setTimeout(typeNext, typeDelay);
-      } else {
-        line++;
-        i = 0;
-        setTimeout(typeNext, typeDelay * 3);
-      }
-    } else {
-      services.classList.add("show");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>BRAND CONSULTANCY</title>
+  <style>
+    :root {
+      --bg: #F5F5DC;
+      --ink: #4A0211;
+      --shadow: 0 10px 30px rgba(0,0,0,0.08);
     }
-  }
 
-  setTimeout(typeNext, startDelay);
-</script>
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      background-image:
+        linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      font-family: 'Anticva', serif;
+      overflow-x: hidden;
+    }
 
+    /* Intro */
+    .intro-section {
+      min-height: 86vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding-top: 100px;
+    }
+    .typewriter {
+      font-size: clamp(40px, 12vw, 135px);
+      line-height: 1.1;
+      text-align: center;
+      padding-inline: 16px;
+    }
+    .caret {
+      display: inline-block;
+      width: 3px;
+      background: #000;
+      margin-left: 3px;
+      animation: blink .8s steps(1, end) infinite;
+      vertical-align: bottom;
+      height: 0.85em;
+    }
+    @keyframes blink { 50% { background: transparent; } }
+
+    /* Cards wrapper */
+    .cards-section {
+      position: relative;
+      min-height: 80vh;
+    }
+
+    /* Card base */
+    .card {
+      position: sticky;
+      top: 120px;
+      max-width: 650px;
+      margin: 0 auto;
+      background: var(--ink);
+      border-radius: 24px;
+      box-shadow: var(--shadow);
+      padding: clamp(24px, 3vw, 40px);
+      color: #f2f2f2;
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+
+    .card-one p {
+      font-size: clamp(16px, 2.2vw, 22px);
+      line-height: 1.7;
+      margin: 0 0 24px 0;
+    }
+
+    /* Bullet list */
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .bullet-list li {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 16px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .bullet-list li.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .bullet-dot {
+      width: 10px;
+      height: 10px;
+      background: #f2f2f2;
+      border-radius: 50%;
+      margin-right: 12px;
+      flex-shrink: 0;
+      margin-top: 8px;
+    }
+    .bullet-text {
+      font-size: clamp(15px, 2vw, 20px);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+  <!-- Intro -->
+  <section class="intro-section">
+    <div class="typewriter" id="tw"></div>
+  </section>
+
+  <!-- Cards Section -->
+  <section class="cards-section stack-container">
+    <!-- Card one -->
+    <article class="card card-one" id="cardOne">
+      <p>
+Our specialty is creating self-evident brand identities. We create a comprehensive identity that embodies your business, from language, tone, and storytelling to logos, colors, and typography. Making your brand memorable, approachable, and recognized is our straightforward mission. We develop a personality that engages your audience and distinguishes you from the competition in addition to designing images.      </p>
+      <ul class="bullet-list" id="bulletList">
+        <li><span class="bullet-dot"></span><span class="bullet-text">Describe the vision, mission and values of your brand.</span></li>
+        <li><span class="bullet-dot"></span><span class="bullet-text">Determine your distinct market postioning</span></li>
+        <li><span class="bullet-dot"></span><span class="bullet-text">Create communication and development strategies</span></li>
+        <li><span class="bullet-dot"></span><span class="bullet-text">Boost brand coherence at every touchpoint</span></li>
+      </ul>
+    </article>
+  </section>
+
+  <script>
+    /* ---------- Typewriter ---------- */
+    const lines = ["BRAND", "CONSULTANCY"];
+    const typeDelay = 80;
+    const startDelay = 400;
+    const container = document.getElementById('tw');
+    let line = 0, i = 0;
+
+    function typeNext() {
+      if (line < lines.length) {
+        if (i <= lines[line].length) {
+          let html = "";
+          for (let l = 0; l < line; l++) {
+            html += `<div><strong>${lines[l]}</strong></div>`;
+          }
+          html += `<div><strong>${lines[line].slice(0, i)}</strong><span class="caret"></span></div>`;
+          container.innerHTML = html;
+          i++;
+          setTimeout(typeNext, typeDelay);
+        } else {
+          line++;
+          i = 0;
+          setTimeout(typeNext, typeDelay * 3);
+        }
+      } else {
+        container.innerHTML = lines.map(w => `<div><strong>${w}</strong></div>`).join("");
+      }
+    }
+    setTimeout(typeNext, startDelay);
+
+    /* ---------- Bullet animation ---------- */
+    const cardOne = document.getElementById("cardOne");
+    const bullets = document.querySelectorAll("#bulletList li");
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          bullets.forEach((li, idx) => {
+            setTimeout(() => li.classList.add("show"), idx * 400);
+          });
+          observer.unobserve(cardOne);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    observer.observe(cardOne);
+  </script>
+</body>
+</html>

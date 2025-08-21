@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Folder Grid</title>
+  <style>
+    body {
+     background: #F5F5DC;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  overflow-x: hidden;
+  font-family: 'Anticva', serif;
+      margin: 0;
+      padding: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 80vh; /* full height center */
+      font-size: 22px;
+    }
+
+    /* Grid container */
+    .folder-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 220px); /* 2 per row on big screens */
+      gap: 40px; /* spacing between boxes */
+      justify-content: center;
+    }
+
+    /* Responsive: 1 folder per row on smaller screens */
+    @media (max-width: 600px) {
+      .folder-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Folder shape */
+    .folder {
+      position: relative;
+      background-color: #77001c;
+      border: 2px solid #000; /* Purple border */
+      border-radius: 6px;
+      text-align: center;
+      font-weight: bold;
+      color: #f2f2f2;
+      padding: 50px 20px;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s, color 0.3s, border 0.3s;
+    }
+
+    /* Folder tab */
+    .folder::before {
+      content: "";
+      position: absolute;
+      top: -12px;
+      left: 20px;
+      width: 60px;
+      height: 12px;
+      background: #77001c;
+      border: 2px solid #77001c;
+      border-bottom: none;
+      border-radius: 4px 4px 0 0;
+      transition: background-color 0.3s, border 0.3s;
+    }
+
+
+    /* Active (clicked) folder style */
+  </style>
+</head>
+<body>
+  <div class="folder-grid">
+    <div class="folder">LOGOS</div>
+    <div class="folder">BRAND</div>
+    <div class="folder">GUIDELINES</div>
+    <div class="folder">STYLE CONSISTENCY</div>
+  </div>
+
+  <script>
+    // Add click functionality
+    document.querySelectorAll('.folder').forEach(folder => {
+      folder.addEventListener('click', () => {
+        folder.classList.toggle('active');
+      });
+    });
+  </script>
+</body>
+</html>
