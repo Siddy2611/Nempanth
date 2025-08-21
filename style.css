@@ -755,43 +755,48 @@ body {
     
   }
 .poster-container {
-  width: 63%;
+  margin-top: 200px;
+  width: 59%;
 }
   /* ✅ Keep bar centered */
   .take-what-you-need {
     justify-content: center;
+    
   }
 
    .stack-container {
-    width: auto;
+    width: 350px;
     top: 10vh;
   }
   .stack-card {
-     height: auto;      /* adjusts to content */
-    min-height:22px;
+     height: 200px !important;      /* adjusts to content */
+    min-height:40vh !important;
     padding: 15px;
       display: block;      /* stop flexbox from stretching */
 
   }
   .stack-card h1 {
     padding: 40px;
-    font-size: 40px;
+    font-size: 29px;
   }
   .stack-card p {
     font-size: 12px;
   }
 
-    .icon-left{left: -4%;top: -9%;}
-  .icon-right{right: -15%;top: 15%;}
-  #bulb-icon{right: -6%;bottom: 1%;width: 35%;height: 25%}
-  .down-arrow{left: -15%;bottom: -14%;width: 60%;height: 45%;}
-  #camera-icon{width: 39%;height: 44%}
-  #mic-icon{width: 39%;height: 45%}
-  .deco-bottom{left: 25%; width: 60%;height: 70%;top: -35%;}
-  .deco-right{right: -20%; width: 60%;height: 70%;top: -65%;}
-  .deco-left{left: 21%; width: 70%;height: 70%;top: 57%;}
-  .deco-top{left: 25%; width: 60%;height: 60%;top: 62%;}
-  .mission-vision-values .disc{width:20%;height: 16%;}
+   .icon-left{left: 27%;top: 8%;}
+   #camera-icon{width: 40%;height: 35%} 
+ .icon-right{left: 37%;top: 55%;}
+  #mic-icon{width: 35%;height: 40%}
+    #bulb-icon{left:6%;top:50%;}  
+  .down-arrow{left: -15%;bottom: -9%;width: 60%;height: 45%;}
+  
+
+  .deco-bottom{left: -25%; width: 60%;height: 70%;top: -55%;} 
+  .deco-right{right: -11%; width: 50%;height: 57%;top: -45%;}
+   .deco-left{left: 69%; width: 45%;height: 40%;top: 57%;}
+  .deco-top{left: 73%; width: 40%;height: 40%;top: 96%;}   
+  .mission-vision-values .disc{width:21%;height: 16%;}
+  
 }
 
 
