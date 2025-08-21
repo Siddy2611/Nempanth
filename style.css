@@ -419,7 +419,20 @@ body {
   position: relative;
   flex-wrap: wrap;
 }
-.connect-title{font-size: 75px; font-family: 'Anticva',serif;color: #77001c;}
+.connect-title{font-size: 75px; font-family: 'Anticva',serif;color: #77001c;text-align: center;}
+.connect-link{
+  color: #77001c;
+  text-decoration: none;
+  display: inline-block;
+  animation: float 2s ease-in-out infinite;
+}
+
+/* Floating animation */
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-15px); }
+  100% { transform: translateY(0); }
+}
 .connect-left {
   position: absolute;
   left: 7%;
